@@ -1,0 +1,8 @@
+POST http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    "name" : "Minhee",
+    "email" : "minizzang@kaist.ac.kr",
+    "password" : "hello"
+}
