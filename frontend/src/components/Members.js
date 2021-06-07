@@ -4,7 +4,7 @@ import "./Members.css";
 const Members = (props) => {
     return (
         <div className="member-list">
-            <div className="member-profile" onClick={props.editInform}>
+            <div className="member-profile">
                 {props.name}
             </div>
         </div>

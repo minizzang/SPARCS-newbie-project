@@ -30,6 +30,7 @@
     text-align: center;
     line-height: 90px;
     box-shadow: 5px 5px 10px rgb(99, 99, 99);
+    margin-left: 10px;
 }
 .badge {
     background-color: #9ae6b4;

@@ -8,6 +8,13 @@ function signUpUser(signedUpUser, callback) {
     })
 }
 
+function getAll(callback) {
+    PtUserModel.find({} ,{"name":true, "_id":false, "time1":true, "time2": true }, (error, result) => {
+        callback(result);
+    });
+}
+// 
+
 function addUser(name, time1, time2, callback) {
     const newUser = new PtUserModel({
         name,
@@ -20,6 +27,7 @@ function addUser(name, time1, time2, callback) {
 }
 
 module.exports = {
+    getAll,
     signUpUser,
-    addUser
+    addUser,
 };

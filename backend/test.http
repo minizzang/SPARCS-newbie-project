@@ -1,4 +1,4 @@
-POST http://localhost:3000/api/signup
+GET http://localhost:3000/schedular/
 Content-Type: application/json
 
 {

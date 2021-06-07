@@ -13,10 +13,10 @@ const app = express();
 const port = 8080;
 app.use(cors());
 
-app.all('*', (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://localhost:3000");
-  next();
-});
+// app.all('*', (req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://localhost:3000");
+//   next();
+// });
 
 mongoose.connect("mongodb://localhost:27017/health", {
   useNewUrlParser: true,
@@ -36,6 +36,12 @@ app.use(bodyParser.urlencoded({
 app.use("/signup", signUpRouter);
 app.use("/login", loginRouter);
 app.use("/schedular", scheduleRouter);
+
+// app.get("/schedular", (req, res) => {
+//   realdb.getAll((items) => {
+//     res.json(items);
+//   });
+// });
 // app.post("/schedular", (req, res) => {
 //     const {name} = req.name;
 //     realdb.addUser(name, (newItem) => {

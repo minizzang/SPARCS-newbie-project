@@ -1,13 +1,9 @@
-import React, { useMemo, useState } from "react"; //useEffect
-//import axios from "axios";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import Member from "./Members";
-import Table from "./WeekTable";
 import "./Schedular.css";
-import ReactDom from 'react-dom';
-import Popup from 'react-popup';
 import Modal from "./Modal";
-import { TextField } from '@material-ui/core';
 
 import Paper from '@material-ui/core/Paper';
 import {
@@ -17,19 +13,46 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 
 import appointments from './Today-appointments';
-import axios from "axios";
 import { responseInterceptor } from "http-proxy-middleware";
 
 const Schedular = () => {
     const [members, setMembers] = useState([]);
     
+    
     const [ modalOpen, setModalOpen ] = useState(false);
+    const headers = {'Content-Type': 'application/json'}
+
+    // useEffect(()=> {
+    //   axios.post(`http://localhost:8080/schedular/getusers`, {})
+    //   // .then(response => {
+    //   //   setMembers(response.data);
+    //   .then(Response => console.log(Response.data.name))
+    //   .catch(error => {
+    //     console.log(error)})
+    // }, []);
+
+    useEffect(()=> {
+      axios.get(`http://localhost:8080/schedular`)
+      .then(response => {
+        response.data.map(v => {
+          if ((v.name != null) &&(v.name != '')) {
+            setMembers({...members, v})
+            console.log(members)
+            console.log(v);
+          }
+        })
+        setMembers(response.data);
+        console.log("final")
+        console.log(response)
+        console.log(response.data)
+      });
+    }, []);
 
     const openModal = () => {
         setModalOpen(true);
     }
 
-    const headers = {'Content-Type': 'application/json'}
+    
 
     const closeModal = (data) => {   //여기서 데이터 전송
         setModalOpen(false);
@@ -38,38 +61,29 @@ const Schedular = () => {
           time1: data.time1,
           time2: data.time1,
         }, {headers: headers})
-        .then(data => console.log(data.response.data))
+        .then(data => console.log(data))
         .catch(error => {
           console.log(error)
         })
     }
-    // const closeModal = (data) => {   //여기서 데이터 전송
-    //     setModalOpen(false);
-    //     axios.post(`http://localhost:8080/schedular`, {
-    //       name: data.name,
-    //       time1: data.time1,
-    //       time2: data.time1,
-    //     })
-    //     console.log(data)
-    // }
 
-    const onAddMember = () => {
-        // setMembers([
-        //     ...members, {
-        //     key: 1,
-        //     name : "mini",
-        //     time : 30
-        // }])
-    }
-
-
+    // const membersList = members.map(v => (
+    //   if ((v.name != null) &&(v.name != '')) {
+    //     console.log(v);
+    //     <Member
+    //       name={v.name}
+    //       time1={v.time1}
+    //       time2={v.time2}
+    //     />
+    //   }
+    // );
     const membersList = members.map(v => (
-        <Member 
-            key={v._id}
-            name={v.name}
-            time={v.time}
+      <Member
+          name={v.name}
+          time1={v.time1}
+          time2={v.time2}
         />
-    ))
+    ));
 
     return (
       <>
@@ -83,7 +97,7 @@ const Schedular = () => {
                 </div>
             </div>
               <Paper>
-                <Scheduler data={appointments} height={660} >
+                <Scheduler data={appointments} height={660} > 
                   <WeekView startDayHour={9} endDayHour={22} excludedDays={[0,6]} />
                   <Appointments />
                 </Scheduler>
