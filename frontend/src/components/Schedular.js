@@ -28,15 +28,30 @@ const Schedular = () => {
     const openModal = () => {
         setModalOpen(true);
     }
+
+    const headers = {'Content-Type': 'application/json'}
+
     const closeModal = (data) => {   //여기서 데이터 전송
         setModalOpen(false);
         axios.post(`http://localhost:8080/schedular`, {
           name: data.name,
           time1: data.time1,
           time2: data.time1,
+        }, {headers: headers})
+        .then(data => console.log(data.response.data))
+        .catch(error => {
+          console.log(error)
         })
-        console.log(data)
     }
+    // const closeModal = (data) => {   //여기서 데이터 전송
+    //     setModalOpen(false);
+    //     axios.post(`http://localhost:8080/schedular`, {
+    //       name: data.name,
+    //       time1: data.time1,
+    //       time2: data.time1,
+    //     })
+    //     console.log(data)
+    // }
 
     const onAddMember = () => {
         // setMembers([
