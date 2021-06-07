@@ -1,0 +1,53 @@
+.schedule-page-box {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+.schedular {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.member-show {
+    width: 100%;
+    height: 100px;
+    flex-direction: row;
+    justify-content: flex-start;
+    display: flex;
+    overflow: auto;
+}
+.add-icon {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 30%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    line-height: 90px;
+    box-shadow: 5px 5px 10px rgb(99, 99, 99);
+}
+.badge {
+    background-color: #9ae6b4;
+    color: #22543d;
+    margin-right: 4px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+Paper {
+    width: 50%;
+}
+.input-box-form {
+    flex-direction: row;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 10px 10px 10px 0px;
+}

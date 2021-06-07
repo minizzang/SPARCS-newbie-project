@@ -1,6 +1,5 @@
 const createProxyMiddleware = require("http-proxy-middleware");
 
-// Frontend API -> Backend로 전달 (proxy)
 
 module.exports = function(app) {
   app.use(

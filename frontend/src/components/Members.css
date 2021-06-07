@@ -1,0 +1,11 @@
+.member-profile {
+    width: 100px;
+    height: 100px;
+    background: lightseagreen;
+    border-radius: 50%;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    line-height: 100px;
+    margin-right: 10px;
+}

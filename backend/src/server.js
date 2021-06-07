@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const signUpRouter = require('./routes/signUpRouter')
 const loginRouter = require('./routes/loginRouter')
+const scheduleRouter = require('./routes/scheduleRouter')
 
 const app = express();
 const port = 8080;
@@ -14,7 +15,7 @@ mongoose.connect("mongodb://localhost:27017/health", {
 
 const db = mongoose.connection;
 db.once("open", function() {
-  console.log("Database is connected!");
+  console.log("DB connected!");
 });
 
 app.use(bodyParser.json());
@@ -22,8 +23,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.use("/signup", signUpRouter)
-app.use("/login", loginRouter)
+app.use("/signup", signUpRouter);
+app.use("/login", loginRouter);
+app.use("/schedular", scheduleRouter);
 
 app.get("/", (req, res) => {
   res.status(418).send("Hi");

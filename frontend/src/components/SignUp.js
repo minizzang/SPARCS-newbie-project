@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SignUp.css";
 
 const SignUp = () => {
+
+    
 
     const [userData, setUserData] = useState({
         name: '',
@@ -10,6 +12,14 @@ const SignUp = () => {
         password: ''
     });
 
+    useEffect(() => {
+        // 목록 조회 요청 전송
+        axios.get(`/api/signup`)
+        // 응답이 돌아오면 응답 내용으로 목록을 변경
+        .then(response => {
+            setUserData(response.data);
+        });
+      }, []);
     // useEffect(() => {
     //     axios.get(`/signup`)
     //     .then(response => {
